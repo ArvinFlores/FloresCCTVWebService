@@ -1,20 +1,20 @@
 import { google } from 'googleapis';
+import { getConfigPath } from '../../../util/get-config-path';
+import type { IFileStorageOptions, IFileStorage } from '../interfaces';
 
-import type { IFileStorage } from '../interfaces';
-
-export function createGoogleDriveService (keyFilePath: string): IFileStorage {
+export function createGoogleDriveService ({ destinationDir }: IFileStorageOptions): IFileStorage {
   const auth = new google.auth.GoogleAuth({
-    keyFile: keyFilePath,
+    keyFile: `${getConfigPath()}/google_service.json`,
     scopes: ['https://www.googleapis.com/auth/drive']
   });
   const drive = google.drive({ version: 'v3', auth });
 
   return {
-    async create ({ name, body, destination = '', mimeType = '' }) {
+    async create ({ name, body, mimeType }) {
       const { data } = await drive.files.create({
         requestBody: {
           name,
-          parents: [destination]
+          parents: [destinationDir]
         },
         media: {
           mimeType,
