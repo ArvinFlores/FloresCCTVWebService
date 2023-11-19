@@ -30,7 +30,7 @@ RequestHandler
     },
     async deleteRecording (req, res, next) {
       try {
-        const fileId = req.body.id;
+        const fileId = req.params.id;
         const deleted = await fileStorage.delete(fileId);
 
         return res.json(deleted);
