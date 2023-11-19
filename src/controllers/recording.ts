@@ -1,6 +1,7 @@
+import { Readable } from 'stream';
+import type { RequestHandler } from 'express';
 import { createGoogleDriveService } from '../services/file-storage';
 import type { IFileStorage } from '../services/file-storage/interfaces';
-import type { RequestHandler } from 'express';
 
 function createRecordingController (fileStorage: IFileStorage): Record<
 'createRecording' |
@@ -12,15 +13,17 @@ RequestHandler
   return {
     async createRecording (req, res, next) {
       try {
-        const {
-          name,
-          body,
-          mimeType
-        } = req.body;
+        if (!req.file) {
+          return res.status(422).json({
+            code: 422,
+            message: 'A file is required'
+          });
+        }
+
         const recording = await fileStorage.create({
-          name,
-          body,
-          mimeType
+          name: req.file.originalname,
+          body: Readable.from(req.file.buffer),
+          mimeType: req.file.mimetype
         });
 
         return res.json(recording);

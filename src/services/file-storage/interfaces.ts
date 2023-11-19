@@ -1,4 +1,4 @@
-import type { ReadStream } from 'fs';
+import type { Readable } from 'stream';
 
 export interface StoredFile {
   id: string;
@@ -22,7 +22,7 @@ interface GetAllSuccess {
 
 interface CreateOptions {
   name: string;
-  body: ReadStream;
+  body: Readable;
   mimeType?: string;
 }
 
