@@ -49,5 +49,6 @@ module.exports = {
       2,
       { "allowNullableBoolean": true }
     ],
+    "@typescript-eslint/semi": "off"
   }
 };
