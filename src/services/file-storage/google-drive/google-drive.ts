@@ -28,6 +28,14 @@ export function createGoogleDriveService ({ destinationDir }: IFileStorageOption
         filename: name,
         created_at: new Date().toISOString()
       });
+    },
+    async delete (fileId) {
+      await drive.files.delete({ fileId });
+
+      return await Promise.resolve({
+        id: fileId,
+        deleted_at: new Date().toISOString()
+      });
     }
   };
 }
