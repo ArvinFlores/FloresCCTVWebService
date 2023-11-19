@@ -3,8 +3,8 @@ import type { ReadStream } from 'fs';
 interface CreateOptions {
   name: string;
   body: ReadStream;
-  destination?: string;
-  mimeType?: string;
+  destination: string;
+  mimeType: string;
 }
 
 interface CreateSuccess {
