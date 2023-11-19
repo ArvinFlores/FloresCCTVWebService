@@ -1,5 +1,13 @@
 import type { ReadStream } from 'fs';
 
+interface StoredFile {
+  id: string;
+  name: string;
+  thumbnail: string;
+  src: string;
+  created_at: string;
+}
+
 interface CreateOptions {
   name: string;
   body: ReadStream;
@@ -24,4 +32,5 @@ export interface IFileStorageOptions {
 export interface IFileStorage {
   create: (options: CreateOptions) => Promise<CreateSuccess>;
   delete: (fileId: string) => Promise<DeleteSuccess>;
+  get: (fileId: string) => Promise<StoredFile>;
 }

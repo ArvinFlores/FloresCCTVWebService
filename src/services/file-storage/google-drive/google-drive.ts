@@ -36,6 +36,27 @@ export function createGoogleDriveService ({ destinationDir }: IFileStorageOption
         id: fileId,
         deleted_at: new Date().toISOString()
       });
+    },
+    async get (fileId) {
+      const fields = [
+        'id',
+        'name',
+        'thumbnailLink',
+        'webViewLink',
+        'createdTime'
+      ].join(',');
+      const { data } = await drive.files.get({
+        fileId,
+        fields
+      });
+
+      return await Promise.resolve({
+        id: data.id ?? '',
+        name: data.name ?? '',
+        thumbnail: data.thumbnailLink ?? '',
+        src: data.webViewLink ?? '',
+        created_at: data.createdTime ?? ''
+      });
     }
   };
 }
