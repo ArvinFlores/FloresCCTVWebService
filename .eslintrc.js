@@ -49,6 +49,12 @@ module.exports = {
       2,
       { "allowNullableBoolean": true }
     ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
     "@typescript-eslint/semi": "off"
   }
 };
