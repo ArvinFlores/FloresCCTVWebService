@@ -12,6 +12,9 @@ app.use('/api', [
 app.use(apiErrorResponse);
 
 app.get('/', (_, res) => res.send('FloresCCTV web service'));
+app.get('*', (_, res) => {
+  res.redirect('/');
+});
 
 app.listen(port, () => {
   console.log(`FloresCCTV web service started on port ${port}`);
