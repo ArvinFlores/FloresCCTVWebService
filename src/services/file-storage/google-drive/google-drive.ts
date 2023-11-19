@@ -1,6 +1,8 @@
 import { google } from 'googleapis';
 import { getConfigPath } from '../../../util/get-config-path';
 import type { IFileStorageOptions, IFileStorage } from '../interfaces';
+import { commonFields } from './constants';
+import { createStoredFile } from './helpers';
 
 export function createGoogleDriveService ({ destinationDir }: IFileStorageOptions): IFileStorage {
   const auth = new google.auth.GoogleAuth({
@@ -38,24 +40,31 @@ export function createGoogleDriveService ({ destinationDir }: IFileStorageOption
       });
     },
     async get (fileId) {
-      const fields = [
-        'id',
-        'name',
-        'thumbnailLink',
-        'webViewLink',
-        'createdTime'
-      ].join(',');
       const { data } = await drive.files.get({
         fileId,
-        fields
+        fields: commonFields.join(',')
+      });
+
+      return await Promise.resolve(createStoredFile(data));
+    },
+    async getAll ({ sortKey, sortOrder, pageSize, pageToken }) {
+      const sortKeyMappings = {
+        create_date: 'createdTime'
+      };
+      const { data } = await drive.files.list({
+        pageSize,
+        pageToken,
+        q: `'${destinationDir}' in parents`,
+        fields: `files(${commonFields.join(', ')})`,
+        orderBy: [
+          sortKeyMappings[sortKey] || '',
+          sortOrder === 'desc' ? sortOrder : ''
+        ].join(' ').trim()
       });
 
       return await Promise.resolve({
-        id: data.id ?? '',
-        name: data.name ?? '',
-        thumbnail: data.thumbnailLink ?? '',
-        src: data.webViewLink ?? '',
-        created_at: data.createdTime ?? ''
+        files: data.files?.map(createStoredFile) ?? [],
+        nextPageToken: data.nextPageToken
       });
     }
   };

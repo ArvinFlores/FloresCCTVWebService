@@ -1,11 +1,23 @@
 import type { ReadStream } from 'fs';
 
-interface StoredFile {
+export interface StoredFile {
   id: string;
   name: string;
   thumbnail: string;
   src: string;
   created_at: string;
+}
+
+interface GetAllOptions {
+  sortKey: 'create_date';
+  sortOrder: 'asc' | 'desc';
+  pageSize: number;
+  pageToken?: string;
+}
+
+interface GetAllSuccess {
+  files: StoredFile[];
+  nextPageToken?: string | null;
 }
 
 interface CreateOptions {
@@ -33,4 +45,5 @@ export interface IFileStorage {
   create: (options: CreateOptions) => Promise<CreateSuccess>;
   delete: (fileId: string) => Promise<DeleteSuccess>;
   get: (fileId: string) => Promise<StoredFile>;
+  getAll: (options: GetAllOptions) => Promise<GetAllSuccess>;
 }
