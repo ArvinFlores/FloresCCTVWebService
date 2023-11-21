@@ -1,11 +1,13 @@
 import express from 'express';
 import { recordingRoutes } from './routes/recording';
 import { apiErrorResponse } from './middleware/api-error-response';
+import { apiHeaders } from './middleware/api-headers';
 
 const app = express();
 const port = process.env.PORT ?? 3000;
 
 app.use(express.json());
+app.use(apiHeaders);
 app.use('/api', [recordingRoutes]);
 app.use(apiErrorResponse);
 
