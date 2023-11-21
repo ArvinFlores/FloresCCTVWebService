@@ -1,9 +1,9 @@
 import { Readable } from 'stream';
 import type { RequestHandler } from 'express';
+import type { FileStorage } from 'florescctvwebservice-types';
 import { createGoogleDriveService } from '../services/file-storage';
-import type { IFileStorage } from '../services/file-storage/interfaces';
 
-function createRecordingController (fileStorage: IFileStorage): Record<
+function createRecordingController (fileStorage: FileStorage.Actions): Record<
 'createRecording' |
 'deleteRecording' |
 'getRecording' |

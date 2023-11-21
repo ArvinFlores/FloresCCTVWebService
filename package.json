@@ -21,6 +21,7 @@
     "eslint-config-standard-with-typescript": "^40.0.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-promise": "^6.1.1",
+    "florescctvwebservice-types": "github:ArvinFlores/FloresCCTVWebService-types",
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",

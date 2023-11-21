@@ -1,10 +1,10 @@
 import { google } from 'googleapis';
+import type { FileStorage } from 'florescctvwebservice-types';
 import { getConfigPath } from '../../../util/get-config-path';
-import type { IFileStorageOptions, IFileStorage } from '../interfaces';
 import { commonFields } from './constants';
 import { createStoredFile } from './helpers';
 
-export function createGoogleDriveService ({ destinationDir }: IFileStorageOptions): IFileStorage {
+export function createGoogleDriveService ({ destinationDir }: FileStorage.ClientOptions): FileStorage.Actions {
   const auth = new google.auth.GoogleAuth({
     keyFile: `${getConfigPath()}/google_service.json`,
     scopes: ['https://www.googleapis.com/auth/drive']
