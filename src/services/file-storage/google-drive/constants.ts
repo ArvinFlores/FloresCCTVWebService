@@ -4,6 +4,6 @@ export const commonFields: Array<keyof drive_v3.Schema$File> = [
   'id',
   'name',
   'thumbnailLink',
-  'webViewLink',
+  'webContentLink',
   'createdTime'
 ];
