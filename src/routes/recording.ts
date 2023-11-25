@@ -6,7 +6,7 @@ const recordingRoutes = Router();
 
 recordingRoutes.post('/recordings', multer().single('file'), recordingController.createRecording);
 recordingRoutes.get('/recordings', recordingController.getRecordings);
-recordingRoutes.get('/recordings:id', recordingController.getRecording);
+recordingRoutes.get('/recordings/:id', recordingController.getRecording);
 recordingRoutes.delete('/recordings/:id', recordingController.deleteRecording);
 
 export { recordingRoutes };
