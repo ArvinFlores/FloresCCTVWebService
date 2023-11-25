@@ -25,6 +25,14 @@ export function createGoogleDriveService ({ destinationDir }: FileStorage.Client
         fields: 'id'
       });
 
+      await drive.permissions.create({
+        fileId: data.id ?? '',
+        requestBody: {
+          type: 'anyone',
+          role: 'reader'
+        }
+      });
+
       return await Promise.resolve({
         id: data.id ?? '',
         filename: name,
