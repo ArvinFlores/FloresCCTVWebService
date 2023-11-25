@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import { recordingRoutes } from './routes/recording';
 import { apiErrorResponse } from './middleware/api-error-response';
