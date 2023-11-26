@@ -25,6 +25,8 @@ To get the folder id of a google drive directory go to https://drive.google.com/
 
 You will also need to set `APP_ENV=dev` to declare a development environment
 
+You can also optionally specify a port for the server to run on by setting `PORT=<port>` otherwise it will default to running on port `3000`
+
 ### Add google service account key file
 
 Add the service account json file for your google drive account into `config/google_service.json`. This json file will be needed by the app to interface with the Google Drive API. See [here](https://developers.google.com/workspace/guides/create-credentials#service-account) for how to create a key json file for service accounts.
@@ -52,6 +54,15 @@ CERT_KEY=<path to .key file>
 ```
 
 Once that has been done you can run `sudo npm start` to start the dev server on `https://localhost:3000`
+
+## .env file variables
+| Variable | Description | Value |
+| ----------- | ----------- | ----------- |
+| APP_ENV | sets the environment the app will run in | `prod | dev` |
+| PORT | sets the port the server will run on, defaults to 3000 | any valid port number ie: `3000` |
+| FILE_STORAGE_DIR | the google drive folder to store files in | folder id ie: `3FASDF31CYAX1344LDR5` |
+| CERT_FILE | path to ssl cert file | `/path/to/sslcert.crt` |
+| CERT_KEY | path to ssl cert key | `/path/to/sslcert.key` |
 
 ## Scripts
 
