@@ -17,3 +17,7 @@ config/google_service.json
 
 # env
 .env
+
+# misc
+*.crt
+*.key

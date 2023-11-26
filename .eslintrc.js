@@ -27,7 +27,6 @@ module.exports = {
     "ecmaVersion": "latest"
   },
   "rules": {
-    "@stylistic/js/operator-linebreak": ["error", "after"],
     "@stylistic/js/max-len": [2, { "code": 120 }],
     "@stylistic/js/semi": [2, "always"],
     "@stylistic/js/arrow-parens": [2, "always"],
