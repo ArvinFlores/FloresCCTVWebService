@@ -70,5 +70,5 @@ RequestHandler
   };
 }
 
-const fileStorage = createGoogleDriveService({ destinationDir: process.env.FILE_STORAGE_DIR ?? '' });
+const fileStorage = createGoogleDriveService({ destinationDir: process.env.FILE_STORAGE_DIR });
 export const recordingController = createRecordingController(fileStorage);
