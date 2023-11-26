@@ -58,7 +58,7 @@ Once that has been done you can run `sudo npm start` to start the dev server on 
 ## .env file variables
 | Variable | Description | Value |
 | ----------- | ----------- | ----------- |
-| APP_ENV | sets the environment the app will run in | `prod` | `dev` |
+| APP_ENV | sets the environment the app will run in | `prod` or `dev` |
 | PORT | sets the port the server will run on, defaults to 3000 | any valid port number ie: `3000` |
 | FILE_STORAGE_DIR | the google drive folder to store files in | folder id ie: `3FASDF31CYAX1344LDR5` |
 | CERT_FILE | path to ssl cert file | `/path/to/sslcert.crt` |
