@@ -25,6 +25,8 @@ To get the folder id of a google drive directory go to https://drive.google.com/
 
 You will also need to set `APP_ENV=dev` to declare a development environment
 
+The `CAMERA_IPS=` variable will have to be set as well and needs to contain a comma delimited string of all the camera ips in the LAN
+
 You can also optionally specify a port for the server to run on by setting `PORT=<port>` otherwise it will default to running on port `3000`
 
 ### Add google service account key file
@@ -63,6 +65,7 @@ Once that has been done you can run `sudo npm start` to start the dev server on 
 | FILE_STORAGE_DIR | the google drive folder to store files in | folder id ie: `3FASDF31CYAX1344LDR5` |
 | CERT_FILE | path to ssl cert file | `/path/to/sslcert.crt` |
 | CERT_KEY | path to ssl cert key | `/path/to/sslcert.key` |
+| CAMERA_IPS | comma delimited string of camera ip addresses | `172.1.1.21,172.1.1.20` |
 
 ## Scripts
 
