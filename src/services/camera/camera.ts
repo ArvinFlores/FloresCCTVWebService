@@ -8,11 +8,11 @@ function createCameraService ({
   return {
     cameras: {
       async getHealth () {
-        const res = await Promise.all(ips.map(ip => {
-          return httpClient.get(`https://${ip}:9000/health.json`, { rejectUnauthorized: false });
+        const res = await Promise.all(ips.map(async (ip) => {
+          return await httpClient.get(`https://${ip}:9000/health.json`, { rejectUnauthorized: false });
         }));
 
-        return res.map(r => r.json());
+        return res.map((r) => r.json());
       }
     }
   };

@@ -3,6 +3,7 @@ import express from 'express';
 import fs from 'fs';
 import https from 'https';
 import { recordingRoutes } from './routes/recording';
+import { cameraRoutes } from './routes/camera';
 import { apiErrorResponse } from './middleware/api-error-response';
 import { apiHeaders } from './middleware/api-headers';
 
@@ -17,7 +18,10 @@ const server = process.env.APP_ENV === 'prod'
 
 app.use(express.json());
 app.use(apiHeaders);
-app.use('/api', [recordingRoutes]);
+app.use('/api', [
+  recordingRoutes,
+  cameraRoutes
+]);
 app.use(apiErrorResponse);
 
 app.get('/', (_, res) => res.send('FloresCCTV web service'));

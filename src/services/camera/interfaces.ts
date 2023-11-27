@@ -1,4 +1,4 @@
-import { Camera } from 'florescctvwebservice-types';
+import type { Camera } from 'florescctvwebservice-types';
 import type { ISimpleHttpClient } from '../simple-http-client/interfaces';
 
 interface MultiMethods {
