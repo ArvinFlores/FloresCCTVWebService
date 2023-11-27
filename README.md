@@ -63,8 +63,8 @@ Once that has been done you can run `sudo npm start` to start the dev server on 
 | APP_ENV | sets the environment the app will run in | `prod` or `dev` |
 | PORT | sets the port the server will run on, defaults to 3000 | any valid port number ie: `3000` |
 | FILE_STORAGE_DIR | the google drive folder to store files in | folder id ie: `3FASDF31CYAX1344LDR5` |
-| CERT_FILE | path to ssl cert file | `/path/to/sslcert.crt` |
-| CERT_KEY | path to ssl cert key | `/path/to/sslcert.key` |
+| CERT_FILE | path to ssl cert file, this variable needs to be set in `prod` | `/path/to/sslcert.crt` |
+| CERT_KEY | path to ssl cert key, this variable needs to be set in `prod` | `/path/to/sslcert.key` |
 | CAMERA_IPS | comma delimited string of camera ip addresses | `172.1.1.21,172.1.1.20` |
 
 ## Scripts
