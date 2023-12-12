@@ -63,7 +63,7 @@ export function createGoogleDriveService ({ destinationDir }: FileStorage.Client
         pageSize,
         pageToken,
         q: `'${destinationDir}' in parents`,
-        fields: `files(${commonFields.join(', ')})`,
+        fields: `files(${commonFields.join(', ')}),nextPageToken`,
         orderBy: [
           sortKeyMappings[sortKey] || '',
           sortOrder === 'desc' ? sortOrder : ''
