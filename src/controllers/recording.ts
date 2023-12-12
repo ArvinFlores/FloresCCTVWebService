@@ -56,10 +56,12 @@ RequestHandler
         const sortKey = req.query['sort-key'];
         const sortOrder = req.query['sort-order'];
         const pageSize = req.query['page-size'];
+        const pageToken = req.query['page-token'];
         const recordings = await fileStorage.getAll({
           sortKey: sortKey === 'create_date' ? sortKey : 'create_date',
           sortOrder: sortOrder === 'asc' || sortOrder === 'desc' ? sortOrder : 'desc',
-          pageSize: pageSize != null && pageSize > '0' ? Number(pageSize) : 10
+          pageSize: pageSize != null && pageSize > '0' ? Number(pageSize) : 10,
+          pageToken: typeof pageToken === 'string' ? pageToken : undefined
         });
 
         return res.json(recordings);
