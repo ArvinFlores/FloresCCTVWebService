@@ -4,7 +4,9 @@
   "description": "Web service for FloresCCTV to delegate API calls for internal/external services",
   "main": "src/index.ts",
   "scripts": {
-    "start": "npm run build && node build/index.js",
+    "start": "FOREVER_ROOT=$(pwd)/forever forever start --uid FloresCCTVWebService -a build/index.js",
+    "deploy": "FOREVER_ROOT=$(pwd)/forever forever stop FloresCCTVWebService && npm run build && npm start",
+    "create-pm": "npm run build && npm start",
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
     "lint": "eslint src --ext js,ts"
@@ -30,6 +32,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "forever": "^4.0.3",
     "googleapis": "^128.0.0",
     "multer": "^1.4.5-lts.1"
   }

@@ -57,6 +57,39 @@ CERT_KEY=<path to .key file>
 
 Once that has been done you can run `sudo npm start` to start the dev server on `https://localhost:3000`
 
+### Start the web service on boot
+
+Create the system service script
+```
+sudo nano /etc/systemd/system/florescctvwebservice.service
+```
+
+Paste the following content replacing `/path/to` with the path where you have installed the `FloresCCTVWebService` repo
+```
+[Unit]
+Description=FloresCCTV Web Service
+
+[Service]
+Type=forking
+PIDFile=/path/to/FloresCCTVWebService/forever/pids/FloresCCTVWebService.pid
+ExecStart=/usr/bin/npm start
+WorkingDirectory=/path/to/FloresCCTVWebService
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Set the file permissions
+```
+sudo chmod 664 /etc/systemd/system/florescctvwebservice.service
+```
+
+Finally reload the daemon and enable the service so that it starts on boot
+```
+sudo systemctl daemon-reload
+sudo systemctl enable florescctvwebservice
+```
+
 ## .env file variables
 | Variable | Description | Value |
 | ----------- | ----------- | ----------- |
@@ -72,6 +105,8 @@ Once that has been done you can run `sudo npm start` to start the dev server on 
 | Script      | Description |
 | ----------- | ----------- |
 | start | builds the assets and starts the node server on `https://localhost:3000` |
+| deploy | builds the newest assets and restarts the node server |
+| create-pm | creates the node process manager which keeps the node server running forever |
 | dev | starts the hot reloading dev server on `http://localhost:3000` |
 | lint | lints the js/ts files |
 | build | creates production assets and places them in the `build/` directory |
