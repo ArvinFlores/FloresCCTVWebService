@@ -1,0 +1,1 @@
+export { recordingController } from './recording';

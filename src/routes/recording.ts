@@ -8,5 +8,6 @@ recordingRoutes.post('/recordings', multer().single('file'), recordingController
 recordingRoutes.get('/recordings', recordingController.getRecordings);
 recordingRoutes.get('/recordings/:id', recordingController.getRecording);
 recordingRoutes.delete('/recordings/:id', recordingController.deleteRecording);
+recordingRoutes.delete('/recordings', recordingController.deleteRecordings);
 
 export { recordingRoutes };

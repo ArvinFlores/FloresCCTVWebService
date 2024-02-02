@@ -1,11 +1,14 @@
 import { Readable } from 'stream';
 import type { RequestHandler } from 'express';
 import type { FileStorage } from 'florescctvwebservice-types';
-import { createGoogleDriveService } from '../services/file-storage';
+import { createGoogleDriveService } from '../../services/file-storage';
+import { isEmptyObject } from '../../util/is-empty-object';
+import { validateDeleteAllQuery } from './helpers';
 
 function createRecordingController (fileStorage: FileStorage.Actions): Record<
 'createRecording' |
 'deleteRecording' |
+'deleteRecordings' |
 'getRecording' |
 'getRecordings',
 RequestHandler
@@ -36,6 +39,32 @@ RequestHandler
         const fileId = req.params.id;
         const deleted = await fileStorage.delete(fileId);
 
+        return res.json(deleted);
+      } catch (e) {
+        next(e);
+      }
+    },
+    async deleteRecordings (req, res, next) {
+      try {
+        const q = req.query;
+
+        if (q == null || isEmptyObject(q)) {
+          return res.status(422).json({
+            code: 422,
+            message: 'A valid url parameter(s) was not provided'
+          });
+        }
+
+        const error = validateDeleteAllQuery(q);
+
+        if (error != null) {
+          return res.status(422).json({
+            code: 422,
+            message: error
+          });
+        }
+
+        const deleted = await fileStorage.deleteAll(q);
         return res.json(deleted);
       } catch (e) {
         next(e);
