@@ -44,18 +44,7 @@ npm run dev
 
 Set `APP_ENV=prod` to declare a production environment in the `.env` file
 
-You will also need to either use your own ssl certs or generate a pair with the command
-```
-sudo openssl genrsa -out ./selfsign.key 2048 &&  sudo openssl req -new -x509 -key ./selfsign.key -days 365 -out ./selfsign.crt -sha256
-```
-
-then you will have to specify the path to where those files are stored on the server by declaring the following env variables
-```
-CERT_FILE=<path to .crt file>
-CERT_KEY=<path to .key file>
-```
-
-Once that has been done you can run `sudo npm start` to start the dev server on `https://localhost:3000`
+Once that has been done you can run `sudo npm start` to start the server on `http://localhost:3000`
 
 ### Start the web service on boot
 
@@ -96,15 +85,13 @@ sudo systemctl enable florescctvwebservice
 | APP_ENV | sets the environment the app will run in | `prod` or `dev` |
 | PORT | sets the port the server will run on, defaults to 3000 | any valid port number ie: `3000` |
 | FILE_STORAGE_DIR | the google drive folder to store files in | folder id ie: `3FASDF31CYAX1344LDR5` |
-| CERT_FILE | path to ssl cert file, this variable needs to be set in `prod` | `/path/to/sslcert.crt` |
-| CERT_KEY | path to ssl cert key, this variable needs to be set in `prod` | `/path/to/sslcert.key` |
 | CAMERA_IPS | comma delimited string of camera ip addresses | `172.1.1.21,172.1.1.20` |
 
 ## Scripts
 
 | Script      | Description |
 | ----------- | ----------- |
-| start | builds the assets and starts the node server on `https://localhost:3000` |
+| start | builds the assets and starts the node server on `http://localhost:3000` |
 | deploy | builds the newest assets and restarts the node server |
 | create-pm | creates the node process manager which keeps the node server running forever |
 | dev | starts the hot reloading dev server on `http://localhost:3000` |
