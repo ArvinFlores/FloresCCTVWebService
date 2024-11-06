@@ -6,7 +6,7 @@ export function createStoredFile (file: drive_v3.Schema$File): FileStorage.File 
     id: file.id ?? '',
     name: file.name ?? '',
     thumbnail: file.thumbnailLink ?? '',
-    src: file.webContentLink ?? '',
+    src: file.webViewLink ?? '',
     created_at: file.createdTime ?? ''
   };
 }
